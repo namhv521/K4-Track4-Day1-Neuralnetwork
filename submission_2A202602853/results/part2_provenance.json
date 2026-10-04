@@ -1,0 +1,11 @@
+{
+  "fingerprint": "d2e3ad916bfe1dc56a9b137f941509e929e86309b6f31939cc17b9ba8b3fb261",
+  "torch": "2.8.0+cu128",
+  "device": "cpu",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "threads": 2,
+  "train_rows": 371847,
+  "val_rows": 92962,
+  "train_loss_subset": 50000,
+  "split_seed": 42
+}

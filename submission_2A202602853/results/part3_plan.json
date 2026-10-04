@@ -1,0 +1,327 @@
+[
+  {
+    "cfg": {
+      "exp_id": "opt-sgdm-0.03",
+      "group": "optimizer",
+      "description": "SGD momentum LR 0.03 may converge more slowly than 0.1.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.03,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "SGD momentum LR 0.03 may converge more slowly than 0.1.",
+    "mechanism": "Momentum accumulates gradients; LR controls the size of each update."
+  },
+  {
+    "cfg": {
+      "exp_id": "opt-adam-0.001",
+      "group": "optimizer",
+      "description": "Adam may converge faster through per-parameter adaptive updates.",
+      "loss": "ce",
+      "optimizer": "adam",
+      "lr": 0.001,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Adam may converge faster through per-parameter adaptive updates.",
+    "mechanism": "Adam uses bias-corrected first/second moments; optimizer and its LR change together for fair tuning."
+  },
+  {
+    "cfg": {
+      "exp_id": "opt-adam-0.003",
+      "group": "optimizer",
+      "description": "Larger Adam LR may accelerate early fitting but increase oscillation.",
+      "loss": "ce",
+      "optimizer": "adam",
+      "lr": 0.003,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Larger Adam LR may accelerate early fitting but increase oscillation.",
+    "mechanism": "Compare each optimizer at its own best validation LR with the same 20-epoch budget."
+  },
+  {
+    "cfg": {
+      "exp_id": "loss-mse",
+      "group": "loss",
+      "description": "MSE on raw logits versus one-hot targets may fit classification less effectively than CE.",
+      "loss": "mse",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "MSE on raw logits versus one-hot targets may fit classification less effectively than CE.",
+    "mechanism": "MSE averages (logit-one_hot)^2 over B x 7 without 1/2; it is not MSE on softmax probabilities. CE gradient is p-y; logit MSE gradient is 2*(z-y)/7. Compare F1, not loss scales."
+  },
+  {
+    "cfg": {
+      "exp_id": "batch-2048",
+      "group": "hparam",
+      "description": "Larger batch reduces updates per epoch and may slow convergence at fixed LR.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 2048,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Larger batch reduces updates per epoch and may slow convergence at fixed LR.",
+    "mechanism": "Batch 2048 changes update count, not just memory: ceil(N/2048) vs ceil(N/512) per epoch."
+  },
+  {
+    "cfg": {
+      "exp_id": "drop-0.1",
+      "group": "dropout",
+      "description": "Dropout may reduce the train-val gap but hurt a baseline still improving at epoch 20.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.1,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Dropout may reduce the train-val gap but hurt a baseline still improving at epoch 20.",
+    "mechanism": "Dropout adds training noise and reduces co-adaptation; train loss is measured in eval mode."
+  },
+  {
+    "cfg": {
+      "exp_id": "clip-normal",
+      "group": "clipping",
+      "description": "Clipping should activate at normal LR and may slow learning.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": 0.287,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Clipping should activate at normal LR and may slow learning.",
+    "mechanism": "Global norm threshold is half the baseline epoch-mean norm; actual clipped-step fraction is recorded."
+  },
+  {
+    "cfg": {
+      "exp_id": "clip-high-none",
+      "group": "clipping",
+      "description": "Ten-fold LR may cause large gradients, unstable loss, or divergence.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 1.0,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Ten-fold LR may cause large gradients, unstable loss, or divergence.",
+    "mechanism": "Stress-test reference changes LR; compare clipping only against this same high-LR run."
+  },
+  {
+    "cfg": {
+      "exp_id": "clip-high-on",
+      "group": "clipping",
+      "description": "At the same high LR clipping may limit spikes, but cannot guarantee stable convergence.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 1.0,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": 0.287,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "At the same high LR clipping may limit spikes, but cannot guarantee stable convergence.",
+    "mechanism": "Compared with clip-high-none only clip_norm changes; norms are logged before clipping."
+  },
+  {
+    "cfg": {
+      "exp_id": "amp-bf16",
+      "group": "amp",
+      "description": "Mixed precision may not improve end-to-end speed on this small MLP; numerical trajectories may change.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "he",
+      "clip_norm": null,
+      "precision": "bf16",
+      "seed": 1
+    },
+    "hypothesis": "Mixed precision may not improve end-to-end speed on this small MLP; numerical trajectories may change.",
+    "mechanism": "BF16 has an FP32-like exponent range; FP16 has narrower range and needs loss scaling. Parameters and evaluation remain FP32."
+  },
+  {
+    "cfg": {
+      "exp_id": "init-zeros",
+      "group": "init",
+      "description": "Zero initialization leaves hidden ReLU gradients zero; only output bias can learn class priors.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "zeros",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Zero initialization leaves hidden ReLU gradients zero; only output bias can learn class priors.",
+    "mechanism": "Identical zero neurons preserve symmetry and ReLU derivative at zero is zero."
+  },
+  {
+    "cfg": {
+      "exp_id": "init-normal",
+      "group": "init",
+      "description": "Small normal weights shrink activations and may delay convergence.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "normal",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Small normal weights shrink activations and may delay convergence.",
+    "mechanism": "Normal std=0.01 is independent of fan-in; repeated layers can attenuate signal."
+  },
+  {
+    "cfg": {
+      "exp_id": "init-xavier",
+      "group": "init",
+      "description": "Xavier may shrink ReLU activations relative to He; a shallow MLP may still train well.",
+      "loss": "ce",
+      "optimizer": "sgd_momentum",
+      "lr": 0.1,
+      "weight_decay": 0.0,
+      "momentum": 0.9,
+      "batch": 512,
+      "epochs": 20,
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "init": "xavier",
+      "clip_norm": null,
+      "precision": "fp32",
+      "seed": 1
+    },
+    "hypothesis": "Xavier may shrink ReLU activations relative to He; a shallow MLP may still train well.",
+    "mechanism": "Xavier normal variance=2/(fan_in+fan_out); He variance=2/fan_in for ReLU."
+  }
+]

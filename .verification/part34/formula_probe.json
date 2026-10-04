@@ -1,0 +1,7 @@
+{
+  "change": "V2 -> 0 in disposable copy",
+  "before_seed_mean": 0.854837635930016,
+  "after_seed_mean": 0.5708428462594107,
+  "expected": 0.5708428462594107,
+  "after_baseline_min": 0
+}

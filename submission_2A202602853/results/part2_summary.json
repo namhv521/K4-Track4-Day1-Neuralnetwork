@@ -1,0 +1,45 @@
+{
+  "selected_lr": 0.1,
+  "lr_screen_epochs": 3,
+  "baseline_epochs": 20,
+  "baseline_seeds": [
+    1,
+    2,
+    3
+  ],
+  "majority_val_acc": 0.4875970780849457,
+  "selection": "minimum best_val_loss; same split/seed/budget",
+  "std_definition": "sample standard deviation, ddof=1",
+  "provenance": {
+    "fingerprint": "d2e3ad916bfe1dc56a9b137f941509e929e86309b6f31939cc17b9ba8b3fb261",
+    "torch": "2.8.0+cu128",
+    "device": "cpu",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "threads": 2,
+    "train_rows": 371847,
+    "val_rows": 92962,
+    "train_loss_subset": 50000,
+    "split_seed": 42
+  },
+  "val_acc": {
+    "mean": 0.9074568103095889,
+    "std": 0.0035169412325612255,
+    "noise_2sigma": 0.007033882465122451
+  },
+  "val_macro_f1": {
+    "mean": 0.854837635930016,
+    "std": 0.00254672645581246,
+    "noise_2sigma": 0.00509345291162492
+  },
+  "best_val_loss": {
+    "mean": 0.23105446994304657,
+    "std": 0.006877081747629832,
+    "noise_2sigma": 0.013754163495259665
+  },
+  "checks": {
+    "all_completed_20_epochs": true,
+    "all_above_majority": true,
+    "all_final_above_majority": true,
+    "eval_used": false
+  }
+}

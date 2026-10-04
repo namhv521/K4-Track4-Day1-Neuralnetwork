@@ -1,0 +1,26 @@
+{
+  "candidate_exp_id": "opt-adam-0.003",
+  "final_exp_id": "final-s3",
+  "selection": "maximum validation macro-F1 at minimum-loss checkpoint; accuracy tie-break",
+  "extended_budget": 40,
+  "baseline_noise_2sigma": 0.00509345291162492,
+  "eval_used": false,
+  "clip_threshold": 0.287,
+  "provenance": {
+    "fingerprint": "d2e3ad916bfe1dc56a9b137f941509e929e86309b6f31939cc17b9ba8b3fb261",
+    "torch": "2.8.0+cu128",
+    "device": "cpu",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "threads": 2,
+    "train_rows": 371847,
+    "val_rows": 92962,
+    "train_loss_subset": 50000,
+    "split_seed": 42,
+    "part3_sha256": "8311fa3c5887aae7675d3542b2757db375e86e083774e2e1d5471838fd977971"
+  },
+  "fp16_status": "unavailable: FP16 training requires CUDA; measured BF16 on CPU",
+  "amp_exp_id": "amp-bf16",
+  "bf16_status": "CPU autocast measured",
+  "final_f1_mean": 0.8940951442852979,
+  "final_f1_std": 0.004971648807286998
+}

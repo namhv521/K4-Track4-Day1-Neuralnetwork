@@ -1,0 +1,63 @@
+{
+  "baseline_cfg": {
+    "exp_id": "base-s1",
+    "group": "baseline",
+    "description": "Baseline M-base",
+    "loss": "ce",
+    "optimizer": "sgd_momentum",
+    "lr": 0.1,
+    "weight_decay": 0.0,
+    "momentum": 0.9,
+    "batch": 512,
+    "epochs": 20,
+    "hidden": [
+      256,
+      128
+    ],
+    "dropout": 0.0,
+    "init": "he",
+    "clip_norm": null,
+    "precision": "fp32",
+    "seed": 1
+  },
+  "final_cfg": {
+    "exp_id": "final-s3",
+    "group": "final",
+    "description": "Validation-selected configuration; extended 40-epoch budget",
+    "loss": "ce",
+    "optimizer": "adam",
+    "lr": 0.003,
+    "weight_decay": 0.0,
+    "momentum": 0.9,
+    "batch": 512,
+    "epochs": 40,
+    "hidden": [
+      256,
+      128
+    ],
+    "dropout": 0.0,
+    "init": "he",
+    "clip_norm": null,
+    "precision": "fp32",
+    "seed": 3
+  },
+  "selection": "maximum validation macro-F1 at minimum-loss checkpoint; accuracy tie-break",
+  "candidate_exp_id": "opt-adam-0.003",
+  "provenance": {
+    "fingerprint": "d2e3ad916bfe1dc56a9b137f941509e929e86309b6f31939cc17b9ba8b3fb261",
+    "torch": "2.8.0+cu128",
+    "device": "cpu",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "threads": 2,
+    "train_rows": 371847,
+    "val_rows": 92962,
+    "train_loss_subset": 50000,
+    "split_seed": 42,
+    "part3_sha256": "8311fa3c5887aae7675d3542b2757db375e86e083774e2e1d5471838fd977971"
+  },
+  "evaluator_sha256": "ab9d1e3118672d3d01685fa680ef109022a61376fb04c9e69455b2692ce53723",
+  "metadata_sha256": "4a3e59267516c0b0131f91b211640ee976c70e3f81e1bf44b0e0cf4d134b90a5",
+  "eval_npz_sha256": "c785369bae2c74f8949ad9db1db1efd5b9b7e49d5b6aaa6e84a5cd71a5f37816",
+  "raw_data_sha256": "e57945c5ed962f32be0f6d3a7cfca38b793e370d15831f50c288d1778f2592c1",
+  "eval_used_for_selection": false
+}

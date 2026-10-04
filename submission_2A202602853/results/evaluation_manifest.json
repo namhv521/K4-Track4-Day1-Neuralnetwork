@@ -1,0 +1,14 @@
+{
+  "baseline": {
+    "selection_sha256": "452d07e0d3fa95101f1db03ae31cf6660cb10517d9ac526ed310128b7ba0aa25",
+    "pred_sha256": "12ce49cf1559de327ec56ba39324ad30f73ae26e753914fc129eb2d5b50ce254",
+    "scores_sha256": "a170029332bbe68fbe2876ecc42cfaec2fd210083f3f50fbeeece2ccf65afc61",
+    "exp_id": "base-s1"
+  },
+  "final": {
+    "selection_sha256": "452d07e0d3fa95101f1db03ae31cf6660cb10517d9ac526ed310128b7ba0aa25",
+    "pred_sha256": "bcef749dd0ad491c7a9fc3c848f71c059900cfe944333d5c62357520b07b0c07",
+    "scores_sha256": "c4356de296e660d853dd4aa8ccddcf9c9c312c47bde598f2fe39b53f8900e64f",
+    "exp_id": "final-s3"
+  }
+}

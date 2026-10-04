@@ -1,0 +1,91 @@
+{
+  "cfg": {
+    "exp_id": "lr-0.1-s1",
+    "group": "lr_screen",
+    "description": "Validation-only LR screening; 3 epoch budget",
+    "loss": "ce",
+    "optimizer": "sgd_momentum",
+    "lr": 0.1,
+    "weight_decay": 0.0,
+    "momentum": 0.9,
+    "batch": 512,
+    "epochs": 3,
+    "hidden": [
+      256,
+      128
+    ],
+    "dropout": 0.0,
+    "init": "he",
+    "clip_norm": null,
+    "precision": "fp32",
+    "seed": 1
+  },
+  "history": {
+    "epoch": [
+      1,
+      2,
+      3
+    ],
+    "train_loss": [
+      0.4858129322528839,
+      0.4060859680175781,
+      0.372170627117157
+    ],
+    "val_loss": [
+      0.4833531081676483,
+      0.40727952122688293,
+      0.37760278582572937
+    ],
+    "val_acc": [
+      0.7875368430111228,
+      0.8260041737484133,
+      0.8460446203825219
+    ],
+    "val_macro_f1": [
+      0.6246737608450346,
+      0.7137206523637418,
+      0.706247212108644
+    ],
+    "grad_norm": [
+      0.5315762745751967,
+      0.5626969611300399,
+      0.591090866632278
+    ],
+    "epoch_time_s": [
+      3.4312957000001916,
+      3.0333642000041436,
+      3.584493399997882
+    ]
+  },
+  "summary": {
+    "step0_loss": 2.269062042236328,
+    "best_val_loss": 0.37760278582572937,
+    "best_epoch": 3,
+    "final_train_loss": 0.372170627117157,
+    "final_val_loss": 0.37760278582572937,
+    "val_acc": 0.8460446203825219,
+    "val_macro_f1": 0.706247212108644,
+    "time_per_epoch_s": 3.3497177666674056,
+    "peak_mem_MB": null,
+    "diverged": false,
+    "initial_activation_std": [
+      0.6662053465843201,
+      0.6463871598243713,
+      0.5933443903923035
+    ],
+    "clipped_steps": 0,
+    "total_steps": 2181,
+    "clip_fraction": 0.0
+  },
+  "provenance": {
+    "fingerprint": "d2e3ad916bfe1dc56a9b137f941509e929e86309b6f31939cc17b9ba8b3fb261",
+    "torch": "2.8.0+cu128",
+    "device": "cpu",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "threads": 2,
+    "train_rows": 371847,
+    "val_rows": 92962,
+    "train_loss_subset": 50000,
+    "split_seed": 42
+  }
+}
